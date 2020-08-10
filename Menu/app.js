@@ -71,6 +71,14 @@ const menu = [
     img: "./images/item-9.jpeg",
     desc: `skateboard fam synth authentic semiotics. Live-edge lyft af, edison bulb yuccie crucifix microdosing.`,
   },
+  // {
+  //   id: 10,
+  //   title: "steak dinner",
+  //   category: "dinner",
+  //   price: 39.99,
+  //   img: "./images/item-10.jpeg",
+  //   desc: `skateboard fam synth authentic semiotics. Live-edge lyft af, edison bulb yuccie crucifix microdosing.`,
+  // },
 ];
 
 
@@ -106,6 +114,11 @@ window.addEventListener('DOMContentLoaded',function(){
   // displayMenu = displayMenu.join('');
   // console.log(displayMenu);
   // section.innerHTML = displayMenu;
+
+  // make into categories
+  const categories = menu.map(function(item){
+    return item.category;
+  });
 });
 
 function displayMenuItems(menuItems){
@@ -140,5 +153,18 @@ filterButton.forEach(function(btn){
   btn.addEventListener('click',function(e){
     // console.log(e.currentTarget.dataset.id);
     const category = e.currentTarget.dataset.id;
+    const menuCategory = menu.filter(function(menuItem){
+      console.log(menuItem.category);
+      if(menuItem.category === category){
+        return menuItem;
+      }
+    });
+    // filter according to the identifier
+    if(category === 'all'){
+      displayMenuItems(menu);
+    }
+    else{
+      displayMenuItems(menuCategory); 
+    } 
   });
 });
