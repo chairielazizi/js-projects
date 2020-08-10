@@ -71,25 +71,28 @@ const menu = [
     img: "./images/item-9.jpeg",
     desc: `skateboard fam synth authentic semiotics. Live-edge lyft af, edison bulb yuccie crucifix microdosing.`,
   },
-  // {
-  //   id: 10,
-  //   title: "steak dinner",
-  //   category: "dinner",
-  //   price: 39.99,
-  //   img: "./images/item-10.jpeg",
-  //   desc: `skateboard fam synth authentic semiotics. Live-edge lyft af, edison bulb yuccie crucifix microdosing.`,
-  // },
+  {
+    id: 10,
+    title: "steak dinner",
+    category: "dinner",
+    price: 39.99,
+    img: "./images/item-10.jpeg",
+    desc: `skateboard fam synth authentic semiotics. Live-edge lyft af, edison bulb yuccie crucifix microdosing.`,
+  },
 ];
 
 
 const section = document.querySelector('.section-center');
 
 // add filter button
-const filterButton = document.querySelectorAll('.filter-btn');
+// const filterButton = document.querySelectorAll('.filter-btn');
+
+const myContainer = document.querySelector('.btn-container');
 
 // load items
 window.addEventListener('DOMContentLoaded',function(){
   displayMenuItems(menu);
+  displayMenuButtons();
   // console.log("ahoey world");
   // let displayMenu = menu.map(function(item){
   //   console.log(item);
@@ -115,10 +118,50 @@ window.addEventListener('DOMContentLoaded',function(){
   // console.log(displayMenu);
   // section.innerHTML = displayMenu;
 
+  
+  // make dynamic buttons
+  // get only unique categories - hardet one
   // make into categories
-  const categories = menu.map(function(item){
-    return item.category;
-  });
+
+  // const categories = menu.map(function(item){
+  //   return item.category;
+  // });
+
+//   const categories = menu.reduce(function(values,item){
+//     if(!values.includes(item.category)){
+//       values.push(item.category);
+//     }
+//       return values
+//   },['all']
+//   );
+//   console.log(categories);
+//   const categoryButton = categories.map(function(category){
+//     return `<button class="filter-btn" type="button" data-id=${category}>${category}</button>`
+//   }).join("");
+//   // console.log(categoryButton);
+//   myContainer.innerHTML = categoryButton;
+//   const filterButton = document.querySelectorAll('.filter-btn');
+
+//   // filter items
+// filterButton.forEach(function(btn){
+//   btn.addEventListener('click',function(e){
+//     // console.log(e.currentTarget.dataset.id);
+//     const category = e.currentTarget.dataset.id;
+//     const menuCategory = menu.filter(function(menuItem){
+//       console.log(menuItem.category);
+//       if(menuItem.category === category){
+//         return menuItem;
+//       }
+//     });
+//     // filter according to the identifier
+//     if(category === 'all'){
+//       displayMenuItems(menu);
+//     }
+//     else{
+//       displayMenuItems(menuCategory); 
+//     } 
+//   });
+// });
 });
 
 function displayMenuItems(menuItems){
@@ -148,7 +191,23 @@ function displayMenuItems(menuItems){
   section.innerHTML = displayMenu;
 }
 
-// filter items
+function displayMenuButtons(){
+  const categories = menu.reduce(function(values,item){
+    if(!values.includes(item.category)){
+      values.push(item.category);
+    }
+      return values
+  },['all']
+  );
+  console.log(categories);
+  const categoryButton = categories.map(function(category){
+    return `<button class="filter-btn" type="button" data-id=${category}>${category}</button>`
+  }).join("");
+  // console.log(categoryButton);
+  myContainer.innerHTML = categoryButton;
+  const filterButton = document.querySelectorAll('.filter-btn');
+
+  // filter items
 filterButton.forEach(function(btn){
   btn.addEventListener('click',function(e){
     // console.log(e.currentTarget.dataset.id);
@@ -168,3 +227,4 @@ filterButton.forEach(function(btn){
     } 
   });
 });
+}
