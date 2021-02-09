@@ -67,9 +67,25 @@
             stiffness: 0.05
         });
 
+        // add firing function
+        let firing = false;
+        Matter.Events.on(mouseConstraint,'enddrag',function(e) {
+            if(e.body === ball) {
+                firing = true;
+            }
+        });
+        Matter.Events.on(engine,'afterUpdate',function(){
+            if(firing && Math.abs(ball.position.x - 300)<20 && Math.abs(ball.position.y -600)<20){
+                ball = Matter.Bodies.circle(300,600,20);
+                Matter.World.add(engine.world,ball);
+                sling.bodyB = ball;
+                firing = false;
+            }
+        });
+
         // add the ground and objects to the world
         // Matter.World.add(engine.world,[boxA,boxB,ground,mouseConstraint]);
-        Matter.World.add(engine.world,[stack,ground,mouseConstraint]);
+        Matter.World.add(engine.world,[ball,sling,stack,ground,mouseConstraint]);
         Matter.Engine.run(engine);
         Matter.Render.run(render);
 
