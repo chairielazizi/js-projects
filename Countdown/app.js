@@ -51,3 +51,26 @@ weekday = weekdays[futureDate.getDay()];
 
 //change the text on the index.html page
 giveaway.textContent = `giveaway ends on ${weekday}, ${date} ${month} ${year} ${hours}:${minutes}am`;
+
+//set the countdown timers
+//future time in miliseconds
+const futureTime = futureDate.getTime();
+console.log(futureTime); //future date deadline
+
+function getRemainingTime() {
+  const today = new Date().getTime(); //current time to the future date
+  console.log(today);
+
+  const t = futureTime - today;
+  console.log(t);
+  // 1s = 1000ms
+  // 1m = 60s
+  // 1hr = 60min
+  // 1day = 24hr
+
+  // values in ms
+  const oneDay = 24 * 60 * 60 * 1000;
+  console.log(oneDay);
+}
+
+getRemainingTime();
