@@ -50,7 +50,7 @@ console.log(weekday); //it is 1 because it is monday
 weekday = weekdays[futureDate.getDay()];
 
 //change the text on the index.html page
-giveaway.textContent = `giveaway ends on ${weekday}, ${date} ${month} ${year} ${hours}:${minutes}am`;
+giveaway.textContent = `giveaway ends on ${weekday}, ${date} ${month} ${year} ${hours}:${minutes}`;
 
 //set the countdown timers
 //future time in miliseconds
@@ -71,6 +71,35 @@ function getRemainingTime() {
   // values in ms
   const oneDay = 24 * 60 * 60 * 1000;
   console.log(oneDay);
+
+  const oneHour = 60 * 60 * 1000;
+  const oneMinute = 60 * 1000;
+
+  // calculate all values
+  let days = t / oneDay;
+  console.log(days);
+  days = Math.floor(days);
+  console.log(days);
+
+  let hours = Math.floor((t % oneDay) / oneHour);
+  console.log(hours);
+  let minutes = Math.floor((t % oneHour) / oneMinute);
+  let seconds = Math.floor((t % oneMinute) / 1000);
+
+  // set values array
+  const values = [days, hours, minutes, seconds];
+
+  //format the output
+  function format(item) {
+    if (item < 10) {
+      return (item = `0${item}`);
+    }
+    return item;
+  }
+
+  items.forEach(function (item, index) {
+    item.innerHTML = format(values[index]);
+  });
 }
 
 getRemainingTime();
