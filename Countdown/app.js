@@ -29,9 +29,18 @@ const deadline = document.querySelector(".deadline");
 const items = document.querySelectorAll(".deadline-format h4");
 console.log(items);
 
+//if you want the countdown always working and not stop
+let tempDate = new Date();
+let tempYear = tempDate.getFullYear();
+let tempMonth = tempDate.getMonth();
+let tempDay = tempDate.getDate();
+
 // get the current date dynamically
 let futureDate = new Date(2021, 4, 24, 17, 30, 0);
 console.log(futureDate);
+
+//if you want the countdown always working and not stop
+// let futureDate = new Date(tempYear, tempMonth, tempDay + 10, 11, 30, 0);
 
 //accesing the time components
 const year = futureDate.getFullYear();
