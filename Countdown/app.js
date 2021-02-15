@@ -23,14 +23,14 @@ const weekdays = [
 ];
 
 const giveaway = document.querySelector(".giveaway");
-const deadlint = document.querySelector(".deadeline");
+const deadline = document.querySelector(".deadline");
 
 // items will return a nodelist
 const items = document.querySelectorAll(".deadline-format h4");
 console.log(items);
 
 // get the current date dynamically
-let futureDate = new Date(2021, 4, 24, 11, 30, 0);
+let futureDate = new Date(2021, 4, 24, 17, 30, 0);
 console.log(futureDate);
 
 //accesing the time components
@@ -100,6 +100,15 @@ function getRemainingTime() {
   items.forEach(function (item, index) {
     item.innerHTML = format(values[index]);
   });
+
+  //when the countdown is bigger than the initial time
+  if (t < 0) {
+    clearInterval(countdown);
+    deadline.innerHTML = `<h4 class="expired">Sorry,this giveaway haas expired.</h4>`;
+  }
 }
+
+//countdown; set the interval to run the getRemainingTime fx every one second
+let countdown = setInterval(getRemainingTime, 1000);
 
 getRemainingTime();
